@@ -1,0 +1,33 @@
+{
+    "source": {
+        "host": "oracle-server.example.com",
+        "port": 1521,
+        "service_name": "ORCLPDB1",
+        "username": "source_user",
+        "password": "source_password",
+        "schema": "SOURCE_SCHEMA"
+    },
+    "target": {
+        "host": "localhost",
+        "port": 50000,
+        "database": "demo",
+        "username": "monetdb",
+        "password": "monetdb",
+        "schema": "migrated_oracle"
+    },
+    "exclude_tables": [
+        "audit_logs",
+        "system_event_logs",
+        "django_session",
+        "temp_staging_table"
+    ],
+    "exclude_columns": {
+        "user_activity": [
+            "raw_payload",
+            "binary_session_data"
+        ],
+        "documents": [
+            "cached_thumbnail_blob"
+        ]
+    }
+}

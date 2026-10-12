@@ -1,0 +1,8 @@
+# Target Database Connector
+pymonetdb>=1.8.0
+
+# PostgreSQL Source Connector (psycopg 3 with standalone binaries)
+psycopg[binary]>=3.1.0
+
+# Oracle Source Connector (python-oracledb with Thin and Thick mode support)
+oracledb>=2.0.0

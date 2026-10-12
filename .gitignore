@@ -1,0 +1,34 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pytest_cache/
+
+# Logs
+*.log
+logs/
+
+# Database dumps and large data files (GitHub has a strict 100MB file limit)
+data/*
+!data/.gitkeep
+*.sql
+*.dump
+*.dmp
+*.tar
+*.gz
+
+# Real credentials and environment-specific configs
+config/*.json
+!config/*.example.json
+!config/local_test_config.json
+
+# Operating System & Editor artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

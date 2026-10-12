@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: migration_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: django_postgres_db
+    ports:
+      - "5433:5432"
+    volumes:
+      # Mount the data directory so dumps are accessible at /dump inside the container
+      - ./data:/dump:ro
+      - .:/project:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d django_postgres_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  monetdb:
+    image: monetdb/monetdb
+    container_name: migration_monetdb
+    ports:
+      - "50000:50000"
+    environment:
+      # Default credentials used by the official MonetDB image
+      MDB_DB_ADMIN_PASS: monetdb
+    healthcheck:
+      test: ["CMD-SHELL", "mclient -u monetdb -d demo --password=monetdb -s 'SELECT 1;' || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 12

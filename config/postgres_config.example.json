@@ -1,0 +1,32 @@
+{
+    "source": {
+        "host": "postgres-server.example.com",
+        "port": 5432,
+        "database": "source_db",
+        "username": "source_user",
+        "password": "source_password",
+        "schema": "public"
+    },
+    "target": {
+        "host": "localhost",
+        "port": 50000,
+        "database": "demo",
+        "username": "monetdb",
+        "password": "monetdb",
+        "schema": "migrated_postgres"
+    },
+    "exclude_tables": [
+        "django_session",
+        "django_admin_log",
+        "application_audit_logs",
+        "spatial_ref_sys"
+    ],
+    "exclude_columns": {
+        "customer_orders": [
+            "internal_debug_info"
+        ],
+        "attachments": [
+            "raw_file_bytes"
+        ]
+    }
+}
